@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Bucket List</string>
+    <string name="action_delete">Delete</string>
+    <string name="title">Title</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="description">Description</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="create">Create</string>
+    <string name="back">Back</string>
+    <string name="add_item_title">Create Bucket List Item</string>
+</resources>
