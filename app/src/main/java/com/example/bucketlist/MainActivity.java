@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class MainActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener, BucketListAdapter.ItemClickListner {
+public class MainActivity extends AppCompatActivity implements RecyclerView.OnItemTouchListener {
 
     private BucketListAdapter bucketListAdapter;
     private RecyclerView rvBucketList;
@@ -31,10 +31,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
     private GestureDetector gestureDetector;
     private ItemRoomDatabase db;
     private Executor executor = Executors.newSingleThreadExecutor();
-    private TextView text1;
-    private TextView text2;
-    private CheckBox checkBox;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +40,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
         setSupportActionBar(toolbar);
 
         db = ItemRoomDatabase.getDatabase(this);
-        text1 = findViewById(R.id.text1);
-        text2 = findViewById(R.id.text2);
-        checkBox = findViewById(R.id.checkBox);
 
         initRecyclerView();
         getAllItems();
@@ -62,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
     }
 
     private void initRecyclerView() {
-        bucketListAdapter = new BucketListAdapter(bucketList, this);
+        bucketListAdapter = new BucketListAdapter(bucketList);
         rvBucketList = findViewById(R.id.bucketList);
         rvBucketList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvBucketList.setAdapter(bucketListAdapter);
@@ -173,16 +166,5 @@ public class MainActivity extends AppCompatActivity implements RecyclerView.OnIt
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean b) {
 
-    }
-
-    @Override
-    public void onCheckboxClick(Item item) {
-        if(checkBox.isChecked()){
-            text1.setPaintFlags(text1.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            text2.setPaintFlags(text2.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-        } else {
-            text1.setPaintFlags(text1.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-            text2.setPaintFlags(text2.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
-        }
     }
 }
